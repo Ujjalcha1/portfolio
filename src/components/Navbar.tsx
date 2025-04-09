@@ -21,7 +21,9 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setTimeout(() => {
+        setIsScrolled(window.scrollY > 20);
+      }, 100);
     };
 
     window.addEventListener("scroll", handleScroll);

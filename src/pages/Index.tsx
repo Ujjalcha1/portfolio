@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -26,10 +25,10 @@ const Index = () => {
   return (
     <ThemeProvider defaultTheme="light">
       {isLoading && <Preloader />}
-      
+
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        
+
         <main className="flex-grow">
           <HeroSection />
           <AboutSection />
@@ -37,10 +36,10 @@ const Index = () => {
           <ExperienceSection />
           <ContactSection />
         </main>
-        
+
         <Footer />
       </div>
-      
+
       <ScrollToTop />
     </ThemeProvider>
   );
