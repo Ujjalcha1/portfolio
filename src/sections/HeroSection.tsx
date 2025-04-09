@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { TypedText } from "@/components/TypedText";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Section } from "@/components/Section";
 
 const socialLinks = [
   {
@@ -133,12 +135,13 @@ export function HeroSection({ className }: HeroSectionProps) {
   }, []);
 
   return (
-    <section
+    <Section
       id="home"
       className={cn(
-        "min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-16",
+        "min-h-screen flex items-center justify-center relative overflow-hidden pt-16",
         className
       )}
+      hasCustomBackground={true}
     >
       {/* Background animation canvas */}
       <canvas 
@@ -149,71 +152,95 @@ export function HeroSection({ className }: HeroSectionProps) {
       {/* Background gradient */}
       <div className="absolute inset-0 -z-5 bg-[radial-gradient(circle_at_bottom_left,hsl(var(--primary))_0%,transparent_50%),radial-gradient(circle_at_top_right,hsl(var(--secondary))_0%,transparent_50%)] dark:opacity-20 opacity-10" />
       
-      <div className="container px-4 mx-auto text-center">
-        <div className="mb-6 rounded-full w-32 h-32 mx-auto overflow-hidden border-4 border-primary/20 shadow-xl">
-          <img
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3"
-            alt="Ujjal Chatterjee Portrait"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        
-        <div className="animate-fade-in">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            Ujjal Chatterjee
-          </h1>
-          
-          <div className="text-xl md:text-2xl font-medium mb-6 text-primary">
-            <TypedText
-              phrases={[
-                "MERN Stack Developer",
-                "Software Engineer",
-                "React.js Developer",
-                "Node.js Developer",
-                "MongoDB Expert"
-              ]}
-              typingSpeed={70}
-            />
-          </div>
-          
-          <p className="max-w-2xl mx-auto text-muted-foreground mb-8">
-            Passionate and results-oriented MERN Stack Developer with over 3 years of experience
-            designing, developing, and deploying full-stack web applications. Proficient in MongoDB, Express.js,
-            React.js, and Node.js.
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Button asChild size="lg" className="gap-2">
-              <a href="#projects">
-                View Projects <ArrowDown className="h-4 w-4" />
-              </a>
-            </Button>
+      <div className="container px-4 mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Content Area */}
+          <div className="lg:col-span-8 text-center lg:text-left animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+              Ujjal Chatterjee
+            </h1>
             
-            <Button variant="outline" size="lg" className="gap-2">
-              <Download className="h-4 w-4" />
-              Download Resume
-            </Button>
-          </div>
-          
-          <div className="flex justify-center gap-4">
-            {socialLinks.map((link) => (
-              <Button
-                key={link.name}
-                variant="ghost"
-                size="icon"
-                className="rounded-full hover:bg-primary/10 hover-scale"
-                asChild
-              >
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.name}
-                >
-                  {link.icon}
+            <div className="text-xl md:text-2xl font-medium mb-6 text-primary">
+              <TypedText
+                phrases={[
+                  "MERN Stack Developer",
+                  "Software Engineer",
+                  "React.js Developer",
+                  "Node.js Developer",
+                  "MongoDB Expert"
+                ]}
+                typingSpeed={70}
+              />
+            </div>
+            
+            <p className="max-w-2xl mx-auto lg:mx-0 text-muted-foreground mb-8">
+              Passionate and results-oriented MERN Stack Developer with over 3 years of experience
+              designing, developing, and deploying full-stack web applications. Proficient in MongoDB, Express.js,
+              React.js, and Node.js.
+            </p>
+            
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
+              <Button asChild size="lg" className="gap-2">
+                <a href="#projects">
+                  View Projects <ArrowDown className="h-4 w-4" />
                 </a>
               </Button>
-            ))}
+              
+              <Button variant="outline" size="lg" className="gap-2">
+                <Download className="h-4 w-4" />
+                Download Resume
+              </Button>
+            </div>
+            
+            <div className="flex justify-center lg:justify-start gap-4">
+              {socialLinks.map((link) => (
+                <Button
+                  key={link.name}
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full hover:bg-primary/10 hover-scale"
+                  asChild
+                >
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.name}
+                  >
+                    {link.icon}
+                  </a>
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* Visual/Image Area */}
+          <div className="lg:col-span-4 flex justify-center lg:justify-end animate-fade-in">
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute -z-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+              <div className="absolute -z-10 w-60 h-60 bg-secondary/10 rounded-full blur-3xl -top-10 -right-10"></div>
+              
+              {/* Code window mockup */}
+              <div className="bg-card border border-border rounded-lg shadow-lg p-4 w-80 backdrop-blur-sm">
+                <div className="flex items-center mb-3">
+                  <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                  <div className="text-xs text-muted-foreground ml-2">developer.js</div>
+                </div>
+                
+                <div className="font-mono text-sm">
+                  <pre className="text-muted-foreground"><code>const developer = {"{"}</code></pre>
+                  <pre className="pl-4"><code><span className="text-blue-500">name</span>: <span className="text-green-500">'Ujjal Chatterjee'</span>,</code></pre>
+                  <pre className="pl-4"><code><span className="text-blue-500">role</span>: <span className="text-green-500">'MERN Developer'</span>,</code></pre>
+                  <pre className="pl-4"><code><span className="text-blue-500">skills</span>: [<span className="text-green-500">'MongoDB'</span>, <span className="text-green-500">'Express'</span>,</code></pre>
+                  <pre className="pl-9"><code><span className="text-green-500">'React'</span>, <span className="text-green-500">'Node.js'</span>],</code></pre>
+                  <pre className="pl-4"><code><span className="text-blue-500">loves</span>: <span className="text-green-500">'Crafting Clean Code'</span></code></pre>
+                  <pre className="text-muted-foreground"><code>{"}"}</code></pre>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -232,6 +259,6 @@ export function HeroSection({ className }: HeroSectionProps) {
           <ArrowDown className="h-6 w-6 text-muted-foreground" />
         </a>
       </div>
-    </section>
+    </Section>
   );
 }
