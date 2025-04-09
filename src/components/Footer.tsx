@@ -1,4 +1,3 @@
-
 import { cn } from "@/lib/utils";
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 
@@ -16,7 +15,7 @@ const socialLinks = [
   {
     name: "Email",
     icon: <Mail className="h-5 w-5" />,
-    href: "mailto:john.doe@example.com",
+    href: "mailto:ujjalchatterjee08@gmail.com",
   },
 ];
 
@@ -39,7 +38,9 @@ export function Footer({ className }: FooterProps) {
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p className="text-xl font-bold gradient-text">John Doe</p>
+            <p className="text-xl font-bold gradient-text">
+              Ujjal kr Chatterjee
+            </p>
             <p className="text-muted-foreground text-sm">
               MERN Stack Developer
             </p>
@@ -59,20 +60,6 @@ export function Footer({ className }: FooterProps) {
               </a>
             ))}
           </div>
-        </div>
-
-        <div className="mt-8 border-t border-border pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground mb-4 md:mb-0">
-            © {currentYear} John Doe. All rights reserved.
-          </p>
-
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-            aria-label="Back to top"
-          >
-            Back to top <ArrowUp className="h-4 w-4" />
-          </button>
         </div>
       </div>
     </footer>

@@ -1,4 +1,3 @@
-
 import { Section } from "@/components/Section";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ContactForm } from "@/components/ContactForm";
@@ -10,19 +9,19 @@ const contactInfo = [
   {
     icon: <Mail className="h-6 w-6" />,
     title: "Email",
-    value: "john.doe@example.com",
-    href: "mailto:john.doe@example.com",
+    value: "ujjalchatterjee08@gmail.com",
+    href: "mailto:ujjalchatterjee08@gmail.com",
   },
   {
     icon: <Phone className="h-6 w-6" />,
     title: "Phone",
-    value: "+1 (555) 123-4567",
-    href: "tel:+15551234567",
+    value: "+91 7059377035",
+    href: "tel:+917059377035",
   },
   {
     icon: <MapPin className="h-6 w-6" />,
     title: "Location",
-    value: "San Francisco, CA",
+    value: "West Bengal, Kolkata",
   },
 ];
 
@@ -30,27 +29,27 @@ const socialLinks = [
   {
     name: "GitHub",
     icon: <Github className="h-5 w-5" />,
-    href: "https://github.com/yourusername",
+    href: "https://github.com/UjjalCha1",
   },
   {
     name: "LinkedIn",
     icon: <Linkedin className="h-5 w-5" />,
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://linkedin.com/in/ujjalkrchatterjee",
   },
 ];
 
 export function ContactSection() {
   return (
     <Section id="contact">
-      <SectionTitle 
-        title="Get In Touch" 
+      <SectionTitle
+        title="Get In Touch"
         subtitle="Have a project in mind or just want to say hello? I'd love to hear from you."
       />
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
         <div>
           <h3 className="text-2xl font-semibold mb-4">Contact Information</h3>
-          
+
           <div className="grid gap-6 mb-8">
             {contactInfo.map((item, index) => (
               <Card key={index} className="border border-border bg-card">
@@ -73,7 +72,7 @@ export function ContactSection() {
               </Card>
             ))}
           </div>
-          
+
           <div className="mb-8">
             <h4 className="text-lg font-medium mb-3">Find me on</h4>
             <div className="flex gap-3">
@@ -98,7 +97,7 @@ export function ContactSection() {
             </div>
           </div>
         </div>
-        
+
         <div>
           <h3 className="text-2xl font-semibold mb-4">Send Me a Message</h3>
           <ContactForm />

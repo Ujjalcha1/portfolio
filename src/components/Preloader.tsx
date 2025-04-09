@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -9,7 +8,7 @@ export function Preloader() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (progress < 100) {
-        setProgress(prev => Math.min(prev + (Math.random() * 15), 100));
+        setProgress((prev) => Math.min(prev + Math.random() * 15, 100));
       } else {
         setTimeout(() => {
           setIsLoading(false);
@@ -28,24 +27,29 @@ export function Preloader() {
   if (!isLoading) return null;
 
   return (
-    <div className={cn(
-      "fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background transition-opacity duration-500",
-      progress === 100 ? "opacity-0" : "opacity-100"
-    )}>
+    <div
+      className={cn(
+        "fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background transition-opacity duration-500",
+        progress === 100 ? "opacity-0" : "opacity-100"
+      )}
+    >
       <div className="relative mb-8">
-        <h1 className="text-4xl font-bold gradient-text animate-breathe">DevPortfolio</h1>
+        <h1 className="text-4xl font-bold gradient-text animate-breathe">
+          <span className="text-blue-500">Ujjal</span>
+          <span className="text-white">.dev</span>
+        </h1>
       </div>
 
       <div className="w-64 h-1.5 bg-muted rounded-full overflow-hidden">
-        <div 
+        <div
           className="h-full bg-gradient-to-r from-primary to-secondary"
           style={{ width: `${progress}%` }}
         />
       </div>
-      
-      <p className="mt-4 text-sm text-muted-foreground">
+
+      {/* <p className="mt-4 text-sm text-muted-foreground">
         {progress.toFixed(0)}%
-      </p>
+      </p> */}
     </div>
   );
 }
