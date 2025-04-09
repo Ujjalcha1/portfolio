@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { TypedText } from "@/components/TypedText";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Section } from "@/components/Section";
 
 const socialLinks = [
@@ -64,7 +63,8 @@ export function HeroSection({ className }: HeroSectionProps) {
         this.size = Math.random() * 3 + 1;
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
-        this.color = `hsla(${Math.random() * 60 + 180}, 70%, 60%, ${Math.random() * 0.3 + 0.2})`;
+        // Enhanced color palette with more vibrant blues and purples
+        this.color = `hsla(${Math.random() * 60 + 210}, 80%, 60%, ${Math.random() * 0.4 + 0.2})`;
       }
       
       update() {
@@ -89,7 +89,7 @@ export function HeroSection({ className }: HeroSectionProps) {
     
     // Create particle array
     const particles: Particle[] = [];
-    const particleCount = Math.min(100, Math.floor(window.innerWidth / 10));
+    const particleCount = Math.min(120, Math.floor(window.innerWidth / 10));
     
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
@@ -112,9 +112,9 @@ export function HeroSection({ className }: HeroSectionProps) {
           const dy = particles[a].y - particles[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 100) {
-            const opacity = 1 - distance / 100;
-            ctx.strokeStyle = `rgba(100, 150, 255, ${opacity * 0.2})`;
+          if (distance < 120) {
+            const opacity = 1 - distance / 120;
+            ctx.strokeStyle = `rgba(120, 180, 255, ${opacity * 0.3})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
@@ -149,8 +149,20 @@ export function HeroSection({ className }: HeroSectionProps) {
         className="absolute inset-0 -z-10"
       />
       
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-5 bg-[radial-gradient(circle_at_bottom_left,hsl(var(--primary))_0%,transparent_50%),radial-gradient(circle_at_top_right,hsl(var(--secondary))_0%,transparent_50%)] dark:opacity-20 opacity-10" />
+      {/* Enhanced background gradient blend */}
+      <div className="absolute inset-0 -z-5">
+        {/* Primary gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent opacity-60" />
+        
+        {/* Secondary gradient */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-secondary/40 to-transparent opacity-50" />
+        
+        {/* Bottom left accent */}
+        <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-gradient-to-tr from-purple-500/20 via-blue-500/10 to-transparent rounded-full blur-3xl" />
+        
+        {/* Top right accent */}
+        <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-bl from-blue-500/20 via-sky-500/10 to-transparent rounded-full blur-3xl" />
+      </div>
       
       <div className="container px-4 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -217,12 +229,12 @@ export function HeroSection({ className }: HeroSectionProps) {
           {/* Visual/Image Area */}
           <div className="lg:col-span-4 flex justify-center lg:justify-end animate-fade-in">
             <div className="relative">
-              {/* Decorative elements */}
-              <div className="absolute -z-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
-              <div className="absolute -z-10 w-60 h-60 bg-secondary/10 rounded-full blur-3xl -top-10 -right-10"></div>
+              {/* Enhanced decorative elements with better color blending */}
+              <div className="absolute -z-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
+              <div className="absolute -z-10 w-60 h-60 bg-secondary/20 rounded-full blur-3xl -top-10 -right-10"></div>
               
-              {/* Code window mockup */}
-              <div className="bg-card border border-border rounded-lg shadow-lg p-4 w-80 backdrop-blur-sm">
+              {/* Code window mockup with glassmorphism effect */}
+              <div className="bg-card/70 border border-border/50 rounded-lg shadow-lg p-4 w-80 backdrop-blur-md">
                 <div className="flex items-center mb-3">
                   <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
                   <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
