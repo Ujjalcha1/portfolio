@@ -94,37 +94,38 @@ export function Navbar() {
           </span>
           {/* <span className="text-white">dev</span> */}
         </a>
+        <div className="flex items-center justify-end gap-4">
+          <nav className="hidden md:flex items-center space-x-6">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.querySelector(item.href)?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
 
-        <nav className="hidden md:flex items-center space-x-6">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector(item.href)?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
+          <div className="flex items-center space-x-4">
+            <ThemeToggle />
+
+            <Button
+              className="md:hidden"
+              size="icon"
+              variant="ghost"
+              onClick={() => setIsOpen(!isOpen)}
             >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center space-x-4">
-          <ThemeToggle />
-
-          <Button
-            className="md:hidden"
-            size="icon"
-            variant="ghost"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X /> : <Menu />}
-            <span className="sr-only">Toggle menu</span>
-          </Button>
+              {isOpen ? <X /> : <Menu />}
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </div>
         </div>
       </div>
 

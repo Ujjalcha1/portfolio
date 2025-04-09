@@ -165,7 +165,10 @@ export function HeroSection({ className }: HeroSectionProps) {
       <div className="container px-4 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Content Area */}
-          <div className="lg:col-span-8 text-center lg:text-left animate-fade-in">
+          <div
+            className="lg:col-span-8 text-center lg:text-left animate-fade-in"
+            style={{ zIndex: 1 }}
+          >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               Ujjal Chatterjee
             </h1>
@@ -191,12 +194,6 @@ export function HeroSection({ className }: HeroSectionProps) {
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
-              <Button asChild size="lg" className="gap-2">
-                <a href="#projects">
-                  View Projects <ArrowDown className="h-4 w-4" />
-                </a>
-              </Button>
-
               <Button variant="outline" size="lg" className="gap-2">
                 <Download className="h-4 w-4" />
                 Download Resume
@@ -209,7 +206,7 @@ export function HeroSection({ className }: HeroSectionProps) {
                   key={link.name}
                   variant="ghost"
                   size="icon"
-                  className="rounded-full hover:bg-primary/10 transform hover:scale-105"
+                  className="rounded-full hover:bg-primary/10 hover-scale"
                   asChild
                 >
                   <a

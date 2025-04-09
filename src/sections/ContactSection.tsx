@@ -45,7 +45,29 @@ export function ContactSection() {
         title="Get In Touch"
         subtitle="Have a project in mind or just want to say hello? I'd love to hear from you."
       />
-
+      {/* <div className="mb-8 ">
+        <h4 className="text-lg font-medium mb-3">Find me on</h4> */}
+      <div className="flex gap-3 justify-center mb-12">
+        {socialLinks.map((link) => (
+          <Button
+            key={link.name}
+            variant="outline"
+            size="icon"
+            className="rounded-full hover-scale"
+            asChild
+          >
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.name}
+            >
+              {link.icon}
+            </a>
+          </Button>
+        ))}
+      </div>
+      {/* </div> */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
         <div>
           <h3 className="text-2xl font-semibold mb-4">Contact Information</h3>
@@ -71,30 +93,6 @@ export function ContactSection() {
                 </CardContent>
               </Card>
             ))}
-          </div>
-
-          <div className="mb-8">
-            <h4 className="text-lg font-medium mb-3">Find me on</h4>
-            <div className="flex gap-3">
-              {socialLinks.map((link) => (
-                <Button
-                  key={link.name}
-                  variant="outline"
-                  size="icon"
-                  className="rounded-full hover-scale"
-                  asChild
-                >
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.name}
-                  >
-                    {link.icon}
-                  </a>
-                </Button>
-              ))}
-            </div>
           </div>
         </div>
 
