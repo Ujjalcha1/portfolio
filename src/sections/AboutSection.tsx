@@ -2,6 +2,7 @@ import { Section } from "@/components/Section";
 import { SectionTitle } from "@/components/SectionTitle";
 import { SkillBadge } from "@/components/SkillBadge";
 import * as LucideIcons from "lucide-react";
+import profile_image from "../assets/profile.jpg";
 
 const skills = [
   { name: "React", icon: <LucideIcons.FileCode /> },
@@ -60,7 +61,7 @@ export function AboutSection() {
           <div className="relative">
             <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1531891570158-e71b35a485bc?ixlib=rb-4.0.3"
+                src={profile_image}
                 alt="About Me"
                 className="w-full h-full object-cover"
               />
