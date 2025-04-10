@@ -4,6 +4,7 @@ import { TypedText } from "@/components/TypedText";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
 import { Section } from "@/components/Section";
+import resume from "../assets/resume.pdf";
 
 const socialLinks = [
   {
@@ -194,7 +195,17 @@ export function HeroSection({ className }: HeroSectionProps) {
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
-              <Button variant="outline" size="lg" className="gap-2">
+              <Button
+                variant="outline"
+                size="lg"
+                className="gap-2"
+                onClick={() => {
+                  const link = document.createElement("a");
+                  link.href = resume;
+                  link.download = "Ujjal_Chatterjee_Resume.pdf";
+                  link.click();
+                }}
+              >
                 <Download className="h-4 w-4" />
                 Download Resume
               </Button>
