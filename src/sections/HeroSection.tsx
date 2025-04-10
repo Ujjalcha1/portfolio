@@ -171,7 +171,7 @@ export function HeroSection({ className }: HeroSectionProps) {
             style={{ zIndex: 1 }}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Ujjal Chatterjee
+              Ujjal Kr. Chatterjee
             </h1>
 
             <div className="text-xl md:text-2xl font-medium mb-6 text-primary">
@@ -299,7 +299,7 @@ export function HeroSection({ className }: HeroSectionProps) {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
         <a
           href="#about"
           onClick={(e) => {
