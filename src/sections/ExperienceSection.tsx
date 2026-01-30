@@ -31,7 +31,7 @@ const education = [
     id: 1,
     title: "Full Stack Web Development",
     company: "Simplilearn",
-    date: "Summer 2016",
+    date: "2025",
     description:
       "Intensive 9 months program focused on modern web development technologies and practices.",
     tags: [

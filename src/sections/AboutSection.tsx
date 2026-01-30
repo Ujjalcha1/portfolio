@@ -17,6 +17,16 @@ const skills = [
   { name: "RESTful API", icon: <LucideIcons.Network /> },
   { name: "Jest", icon: <LucideIcons.TestTube /> },
   { name: "Docker", icon: <LucideIcons.Container /> },
+  { name: "NestJS", icon: <LucideIcons.Box /> },
+  { name: "PostgreSQL", icon: <LucideIcons.DatabaseBackup /> },
+  { name: "Prisma ORM", icon: <LucideIcons.Layers /> },
+  { name: "GraphQL", icon: <LucideIcons.Share2 /> },
+  { name: "JWT Auth", icon: <LucideIcons.KeyRound /> },
+  { name: "Firebase", icon: <LucideIcons.Flame /> },
+  { name: "Vercel", icon: <LucideIcons.Cloud /> },
+  { name: "CI/CD", icon: <LucideIcons.Workflow /> },
+  { name: "Microservices", icon: <LucideIcons.Component /> },
+  { name: "WebSockets", icon: <LucideIcons.Radio /> },
 ];
 
 export function AboutSection() {

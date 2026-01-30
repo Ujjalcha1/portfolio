@@ -96,10 +96,10 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <h3 className="text-2xl font-semibold mb-4">Send Me a Message</h3>
           <ContactForm />
-        </div>
+        </div> */}
       </div>
     </Section>
   );

@@ -1,16 +1,16 @@
 import { cn } from "@/lib/utils";
-import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const socialLinks = [
   {
     name: "GitHub",
     icon: <Github className="h-5 w-5" />,
-    href: "https://github.com/yourusername",
+    href: "https://github.com/UjjalCha1",
   },
   {
     name: "LinkedIn",
     icon: <Linkedin className="h-5 w-5" />,
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://www.linkedin.com/in/ujjalkrchatterjee",
   },
   {
     name: "Email",

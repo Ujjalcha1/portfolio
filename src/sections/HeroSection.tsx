@@ -1,9 +1,9 @@
-import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { TypedText } from "@/components/TypedText";
-import { cn } from "@/lib/utils";
-import { useEffect, useRef } from "react";
 import { Section } from "@/components/Section";
+import { TypedText } from "@/components/TypedText";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
+import { useEffect, useRef } from "react";
 import resume from "../assets/resume.pdf";
 
 const socialLinks = [
@@ -141,7 +141,7 @@ export function HeroSection({ className }: HeroSectionProps) {
       id="home"
       className={cn(
         "min-h-screen flex items-center justify-center relative overflow-hidden pt-16",
-        className
+        className,
       )}
       hasCustomBackground={true}
     >
@@ -178,10 +178,12 @@ export function HeroSection({ className }: HeroSectionProps) {
               <TypedText
                 phrases={[
                   "MERN Stack Developer",
-                  "Software Engineer",
                   "React.js Developer",
+                  "Next.js Developer",
                   "Node.js Developer",
+                  "NestJS Developer",
                   "MongoDB Expert",
+                  "REST API Developer",
                 ]}
                 typingSpeed={70}
               />
