@@ -30,13 +30,13 @@ export function Preloader() {
     <div
       className={cn(
         "fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background transition-opacity duration-500",
-        progress === 100 ? "opacity-0" : "opacity-100"
+        progress === 100 ? "opacity-0" : "opacity-100",
       )}
     >
       <div className="relative mb-8">
         <h1 className="text-4xl font-bold gradient-text animate-breathe">
           <span className="text-blue-500">Ujjal</span>
-          <span className="text-white">.dev</span>
+          <span className="text-white">.in</span>
         </h1>
       </div>
 
