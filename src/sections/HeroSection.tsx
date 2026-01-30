@@ -243,7 +243,10 @@ export function HeroSection({ className }: HeroSectionProps) {
               <div className="absolute -z-10 w-60 h-60 bg-secondary/20 rounded-full blur-3xl -top-10 -right-10"></div>
 
               {/* Code window mockup with glassmorphism effect */}
-              <div className="bg-card/70 border border-border/50 rounded-lg shadow-lg p-4 w-96 h-60  backdrop-blur-md">
+              <div
+                className="bg-card/70 border border-border/50 rounded-lg shadow-lg p-4 
+                w-96 max-w-full min-h-60 h-auto backdrop-blur-md"
+              >
                 <div className="flex items-center mb-3">
                   <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
                   <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
@@ -254,44 +257,71 @@ export function HeroSection({ className }: HeroSectionProps) {
                 </div>
 
                 <div className="font-mono text-sm">
-                  <pre className="text-muted-foreground">
+                  <pre className="text-muted-foreground whitespace-pre-wrap break-words">
                     <code>const developer = {"{"}</code>
                   </pre>
-                  <pre className="pl-4">
+
+                  <pre className="pl-4 whitespace-pre-wrap break-words">
                     <code>
                       <span className="text-blue-500">name</span>:{" "}
                       <span className="text-green-500">'Ujjal Chatterjee'</span>
                       ,
                     </code>
                   </pre>
-                  <pre className="pl-4">
+
+                  <pre className="pl-4 whitespace-pre-wrap break-words">
                     <code>
                       <span className="text-blue-500">role</span>:{" "}
-                      <span className="text-green-500">'MERN Developer'</span>,
+                      <span className="text-green-500">
+                        'Full Stack Developer'
+                      </span>
+                      ,
                     </code>
                   </pre>
-                  <pre className="pl-4">
+
+                  <pre className="pl-4 whitespace-pre-wrap break-words">
                     <code>
                       <span className="text-blue-500">skills</span>: [
-                      <span className="text-green-500">'MongoDB'</span>,{" "}
-                      <span className="text-green-500">'Express'</span>,
                     </code>
                   </pre>
-                  <pre className="pl-9">
+
+                  <pre className="pl-9 whitespace-pre-wrap break-words">
                     <code>
+                      <span className="text-green-500">'MongoDB'</span>,{" "}
+                      <span className="text-green-500">'Express'</span>,{" "}
                       <span className="text-green-500">'React'</span>,{" "}
-                      <span className="text-green-500">'Node.js'</span>],
+                      <span className="text-green-500">'Node.js'</span>,
                     </code>
                   </pre>
-                  <pre className="pl-4">
+
+                  <pre className="pl-9 whitespace-pre-wrap break-words">
+                    <code>
+                      <span className="text-green-500">'Next.js'</span>,{" "}
+                      <span className="text-green-500">'NestJS'</span>,{" "}
+                      <span className="text-green-500">'TypeScript'</span>,{" "}
+                      <span className="text-green-500">'PostgreSQL'</span>,
+                    </code>
+                  </pre>
+
+                  <pre className="pl-9 whitespace-pre-wrap break-words">
+                    <code>
+                      <span className="text-green-500">'Docker'</span>,{" "}
+                      <span className="text-green-500">'Git'</span>,{" "}
+                      <span className="text-green-500">'REST API'</span>
+                      ],
+                    </code>
+                  </pre>
+
+                  <pre className="pl-4 whitespace-pre-wrap break-words">
                     <code>
                       <span className="text-blue-500">loves</span>:{" "}
                       <span className="text-green-500">
-                        'Crafting Clean Code'
+                        'Clean Architecture'
                       </span>
                     </code>
                   </pre>
-                  <pre className="text-muted-foreground">
+
+                  <pre className="text-muted-foreground whitespace-pre-wrap break-words">
                     <code>{"}"}</code>
                   </pre>
                 </div>
