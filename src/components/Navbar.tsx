@@ -28,50 +28,97 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // useEffect(() => {
+  //   const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
+
+  //   // Initial state: show dot
+  //   tl.call(() => {
+  //     dotRef.current.textContent = ".";
+  //     gsap.set(dotRef.current, {
+  //       opacity: 1,
+  //       marginLeft: "0.1em",
+  //     });
+  //     gsap.set(devRef.current, { x: 0 });
+  //   });
+
+  //   // Step 1: Hide the dot
+  //   tl.to(dotRef.current, {
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     ease: "power2.out",
+  //   });
+
+  //   // Move "dev" to the left while dot is hidden
+  //   tl.to(
+  //     devRef.current,
+  //     {
+  //       x: -5,
+  //       duration: 0.6,
+  //       ease: "power2.out",
+  //     },
+  //     "<",
+  //   );
+
+  //   // Step 3: Show dot again
+  //   tl.to(dotRef.current, {
+  //     opacity: 1,
+  //     duration: 0.5,
+  //     ease: "power2.in",
+  //   });
+
+  //   // Step 4: Move "dev" back to original position
+  //   tl.to(devRef.current, {
+  //     x: 0,
+  //     duration: 0.5,
+  //     ease: "power2.inOut",
+  //   });
+  // }, []);
+
   useEffect(() => {
+    if (!dotRef.current || !devRef.current) return;
+
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
 
-    // Initial state: show dot
-    tl.call(() => {
-      dotRef.current.textContent = ".";
-      gsap.set(dotRef.current, {
-        opacity: 1,
-        marginLeft: "0.1em",
-      });
-      gsap.set(devRef.current, { x: 0 });
-    });
+    tl.set(dotRef.current, { opacity: 1, x: 0 });
+    tl.set(devRef.current, { x: 0 });
 
-    // Step 1: Hide the dot
+    // Hide dot + move dev SAME TIME
     tl.to(dotRef.current, {
       opacity: 0,
+      x: -3,
       duration: 0.5,
       ease: "power2.out",
     });
 
-    // Move "dev" to the left while dot is hidden
     tl.to(
       devRef.current,
       {
         x: -5,
-        duration: 0.6,
+        duration: 0.5,
         ease: "power2.out",
       },
-      "<"
+      "<", // THIS MAKES SYNC
     );
 
-    // Step 3: Show dot again
+    // Show dot + move dev back SAME TIME
     tl.to(dotRef.current, {
       opacity: 1,
-      duration: 0.5,
-      ease: "power2.in",
-    });
-
-    // Step 4: Move "dev" back to original position
-    tl.to(devRef.current, {
       x: 0,
       duration: 0.5,
       ease: "power2.inOut",
     });
+
+    tl.to(
+      devRef.current,
+      {
+        x: 0,
+        duration: 0.5,
+        ease: "power2.inOut",
+      },
+      "<", // SYNC AGAIN
+    );
+
+    return () => tl.kill();
   }, []);
 
   return (
@@ -80,16 +127,23 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
           ? "bg-background/80 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <a href="#home" className="text-xl font-bold gradient-text">
           <span className="text-blue-500">Ujjal</span>
-          <span ref={dotRef} className="inline-block text-white">
+          <span
+            ref={dotRef}
+            className="inline-block text-black dark:text-white"
+          >
             .
           </span>
-          <span ref={devRef} className="inline-block text-white">
+
+          <span
+            ref={devRef}
+            className="inline-block text-black dark:text-white"
+          >
             dev
           </span>
           {/* <span className="text-white">dev</span> */}
