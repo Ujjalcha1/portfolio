@@ -131,7 +131,10 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <a href="#home" className="text-xl font-bold gradient-text">
+        <a
+          href="https://www.ujjal.in"
+          className="text-xl font-bold gradient-text"
+        >
           <span className="text-blue-500">Ujjal</span>
           <span
             ref={dotRef}
