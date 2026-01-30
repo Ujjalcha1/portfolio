@@ -144,7 +144,7 @@ export function Navbar() {
             ref={devRef}
             className="inline-block text-black dark:text-white"
           >
-            dev
+            in
           </span>
           {/* <span className="text-white">dev</span> */}
         </a>
