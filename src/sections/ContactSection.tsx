@@ -72,28 +72,37 @@ export function ContactSection() {
         <div className="grid">
           {/* <h3 className="text-2xl font-semibold mb-4">Contact Information</h3> */}
 
-          <div className="grid grid-cols-3 gap-6 mb-8">
-            {contactInfo.map((item, index) => (
-              <Card key={index} className="border border-border bg-card">
-                <CardContent className="flex items-center p-4">
-                  <div className="mr-4 text-primary">{item.icon}</div>
-                  <div>
-                    <h4 className="font-medium">{item.title}</h4>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="text-muted-foreground">{item.value}</p>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+  {contactInfo.map((item, index) => (
+    <Card key={index} className="border border-border bg-card">
+      <CardContent className="flex items-center p-4">
+        <div className="mr-4 text-primary text-xl">
+          {item.icon}
+        </div>
+
+        <div className="min-w-0">
+          <h4 className="font-medium text-sm sm:text-base">
+            {item.title}
+          </h4>
+
+          {item.href ? (
+            <a
+              href={item.href}
+              className="text-muted-foreground hover:text-primary transition-colors break-words text-sm sm:text-base"
+            >
+              {item.value}
+            </a>
+          ) : (
+            <p className="text-muted-foreground break-words text-sm sm:text-base">
+              {item.value}
+            </p>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  ))}
+</div>
+
         </div>
 
         {/* <div>
