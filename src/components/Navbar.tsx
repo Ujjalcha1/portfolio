@@ -8,7 +8,6 @@ import { gsap } from "gsap";
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
@@ -118,7 +117,9 @@ export function Navbar() {
       "<", // SYNC AGAIN
     );
 
-    return () => tl.kill();
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   return (
@@ -126,16 +127,16 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/80 backdrop-blur-md shadow-sm"
-          : "bg-transparent",
+          ? "glass" // Upgraded to the core .glass utility class
+          : "bg-transparent py-2",
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <a
           href="https://www.ujjal.in"
-          className="text-xl font-bold gradient-text"
+          className="text-2xl font-black tracking-tighter"
         >
-          <span className="text-blue-500">Ujjal</span>
+          <span className="gradient-text">Ujjal</span>
           <span
             ref={dotRef}
             className="inline-block text-black dark:text-white"
@@ -145,19 +146,18 @@ export function Navbar() {
 
           <span
             ref={devRef}
-            className="inline-block text-black dark:text-white"
+            className="inline-block text-black dark:text-white font-mono text-xl"
           >
             in
           </span>
-          {/* <span className="text-white">dev</span> */}
         </a>
         <div className="flex items-center justify-end gap-4">
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                className="relative text-foreground/80 hover:text-primary transition-colors font-medium text-sm uppercase tracking-wider group"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector(item.href)?.scrollIntoView({
@@ -166,6 +166,7 @@ export function Navbar() {
                 }}
               >
                 {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
           </nav>
@@ -188,12 +189,12 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-background shadow-md z-50 py-4 px-6 flex flex-col space-y-4 animate-fade-in">
+        <div className="md:hidden absolute top-full left-0 right-0 glass border-t border-border z-50 py-6 px-6 flex flex-col space-y-4 animate-fade-in shadow-2xl">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-foreground/80 hover:text-primary py-2 transition-colors font-medium"
+              className="text-foreground/90 hover:text-primary py-2 text-lg font-semibold transition-colors border-b border-border/40"
               onClick={(e) => {
                 e.preventDefault();
                 document.querySelector(item.href)?.scrollIntoView({

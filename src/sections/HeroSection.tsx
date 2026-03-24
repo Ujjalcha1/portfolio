@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import resume from "../assets/resume.pdf";
 
 const socialLinks = [
@@ -30,6 +31,8 @@ interface HeroSectionProps {
 
 export function HeroSection({ className }: HeroSectionProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const visualRef = useRef<HTMLDivElement>(null);
 
   // Particle animation effect
   useEffect(() => {
@@ -64,8 +67,8 @@ export function HeroSection({ className }: HeroSectionProps) {
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
         // Enhanced color palette with more vibrant blues and purples
-        this.color = `hsla(${Math.random() * 60 + 210}, 80%, 60%, ${
-          Math.random() * 0.4 + 0.2
+        this.color = `hsla(${Math.random() * 60 + 230}, 90%, 65%, ${
+          Math.random() * 0.4 + 0.1
         })`;
       }
 
@@ -91,7 +94,7 @@ export function HeroSection({ className }: HeroSectionProps) {
 
     // Create particle array
     const particles: Particle[] = [];
-    const particleCount = Math.min(120, Math.floor(window.innerWidth / 10));
+    const particleCount = Math.min(100, Math.floor(window.innerWidth / 12));
 
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
@@ -114,9 +117,9 @@ export function HeroSection({ className }: HeroSectionProps) {
           const dy = particles[a].y - particles[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 120) {
-            const opacity = 1 - distance / 120;
-            ctx.strokeStyle = `rgba(120, 180, 255, ${opacity * 0.3})`;
+          if (distance < 150) {
+            const opacity = 1 - distance / 150;
+            ctx.strokeStyle = `rgba(139, 92, 246, ${opacity * 0.25})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
@@ -136,6 +139,39 @@ export function HeroSection({ className }: HeroSectionProps) {
     };
   }, []);
 
+  // GSAP Entrance Animations
+  useEffect(() => {
+    if (!contentRef.current || !visualRef.current) return;
+    
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      
+      tl.fromTo(
+        contentRef.current.children,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: 0.15, delay: 0.2 }
+      ).fromTo(
+        visualRef.current,
+        { scale: 0.8, opacity: 0, rotationY: 15 },
+        { scale: 1, opacity: 1, rotationY: 0, duration: 1.2 },
+        "-=0.8"
+      );
+
+      // Gentle floating animation on code window
+      gsap.to(visualRef.current, {
+        y: -15,
+        rotationZ: 1,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+      
+    }, [contentRef, visualRef]); // scope
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <Section
       id="home"
@@ -149,58 +185,49 @@ export function HeroSection({ className }: HeroSectionProps) {
       <canvas ref={canvasRef} className="absolute inset-0 -z-10" />
 
       {/* Enhanced background gradient blend */}
-      <div className="absolute inset-0 -z-5">
-        {/* Primary gradient */}
-        {/* <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent opacity-60" /> */}
-
-        {/* Secondary gradient */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-secondary/40 to-transparent opacity-0" />
-
-        {/* Bottom left accent */}
-        {/* <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-gradient-to-tr from-purple-500/20 via-blue-500/10 to-transparent rounded-full blur-3xl" /> */}
-
+      <div className="absolute inset-0 -z-5 pointer-events-none">
         {/* Top right accent */}
-        <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-bl from-blue-500/20 via-sky-500/10 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]" />
+        {/* Bottom left accent */}
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px]" />
       </div>
 
-      <div className="container px-4 mx-auto">
+      <div className="container px-4 mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Content Area */}
           <div
-            className="lg:col-span-8 text-center lg:text-left animate-fade-in"
-            style={{ zIndex: 1 }}
+            ref={contentRef}
+            className="lg:col-span-7 text-center lg:text-left"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Ujjal Kr. Chatterjee
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tighter leading-tight">
+              Ujjal Kr. <br className="hidden lg:block"/>
+              <span className="gradient-text">Chatterjee</span>
             </h1>
 
-            <div className="text-xl md:text-2xl font-medium mb-6 text-primary">
-              <TypedText
-                phrases={[
-                  "MERN Stack Developer",
-                  "React.js Developer",
-                  "Next.js Developer",
-                  "Node.js Developer",
-                  "NestJS Developer",
-                  "MongoDB Expert",
-                  "REST API Developer",
-                ]}
-                typingSpeed={70}
-              />
+            <div className="text-2xl md:text-3xl font-semibold mb-6">
+              <span className="text-muted-foreground mr-2">I build</span>
+              <span className="text-foreground">
+                <TypedText
+                  phrases={[
+                    "Scalable Web Apps",
+                    "Modern UIs in React",
+                    "Robust Node APIs",
+                    "Full-Stack Solutions",
+                  ]}
+                  typingSpeed={70}
+                />
+              </span>
             </div>
 
-            <p className="max-w-2xl mx-auto lg:mx-0 text-muted-foreground mb-8">
-              Passionate and results-oriented MERN Stack Developer with over 3
-              years of experience designing, developing, and deploying
-              full-stack web applications. Proficient in MongoDB, Express.js,
-              React.js, and Node.js.
+            <p className="max-w-xl mx-auto lg:mx-0 text-muted-foreground/90 text-lg mb-10 leading-relaxed font-medium">
+              Passionate MERN Stack Developer shaping digital experiences. Over 3 years transforming complex requirements into elegant, high-performance web applications using modern web technologies.
             </p>
 
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-5 mb-8">
               <Button
-                variant="outline"
+                variant="default"
                 size="lg"
-                className="gap-2"
+                className="gap-2 h-14 px-8 rounded-full shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-shadow text-md"
                 onClick={() => {
                   const link = document.createElement("a");
                   link.href = resume;
@@ -208,7 +235,7 @@ export function HeroSection({ className }: HeroSectionProps) {
                   link.click();
                 }}
               >
-                <Download className="h-4 w-4" />
+                <Download className="h-5 w-5" />
                 Download Resume
               </Button>
             </div>
@@ -217,9 +244,9 @@ export function HeroSection({ className }: HeroSectionProps) {
               {socialLinks.map((link) => (
                 <Button
                   key={link.name}
-                  variant="ghost"
+                  variant="outline"
                   size="icon"
-                  className="rounded-full hover:bg-primary/10 hover-scale"
+                  className="rounded-full h-12 w-12 border-border/50 bg-background/50 backdrop-blur-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
                   asChild
                 >
                   <a
@@ -236,16 +263,11 @@ export function HeroSection({ className }: HeroSectionProps) {
           </div>
 
           {/* Visual/Image Area */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end animate-fade-in">
-            <div className="relative">
-              {/* Enhanced decorative elements with better color blending */}
-              <div className="absolute -z-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
-              <div className="absolute -z-10 w-60 h-60 bg-secondary/20 rounded-full blur-3xl -top-10 -right-10"></div>
-
-              {/* Code window mockup with glassmorphism effect */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end" ref={visualRef}>
+            <div className="relative w-full max-w-lg perspective-1000">
+              {/* Code window mockup with advanced glassmorphism effect */}
               <div
-                className="bg-card/70 border border-border/50 rounded-lg shadow-lg p-4 
-                w-96 max-w-full min-h-60 h-auto backdrop-blur-md"
+                className="glass-card shadow-2xl p-6 w-full min-h-[400px] h-auto rounded-xl border border-white/20 relative"
               >
                 <div className="flex items-center mb-3">
                   <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>

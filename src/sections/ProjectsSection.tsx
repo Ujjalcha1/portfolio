@@ -1,10 +1,13 @@
-
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Section } from "@/components/Section";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Sample projects data
 const projectsData = [
@@ -78,50 +81,79 @@ const categories = [
 
 export function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const sectionRef = useRef<HTMLDivElement>(null);
   
   const filteredProjects = projectsData.filter(
     (project) => activeCategory === "all" || project.category === activeCategory
   );
 
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Animate project cards stagger when scrolled into view
+      gsap.fromTo(
+        ".project-card-wrapper",
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [activeCategory]); // Re-run animation when category changes
+
   return (
     <Section id="projects">
-      <SectionTitle 
-        title="My Projects" 
-        subtitle="Explore my recent work and technical projects"
-      />
-      
-      <div className="flex justify-center flex-wrap gap-2 mb-10">
-        {categories.map((category) => (
-          <Button
-            key={category.value}
-            variant={activeCategory === category.value ? "default" : "outline"}
-            size="sm"
-            className={cn(
-              "transition-all",
-              activeCategory === category.value
-                ? ""
-                : "hover:text-primary"
-            )}
-            onClick={() => setActiveCategory(category.value)}
-          >
-            {category.label}
-          </Button>
-        ))}
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            image={project.image}
-            tags={project.tags}
-            demoUrl={project.demoUrl}
-            githubUrl={project.githubUrl}
-            className="animate-fade-in"
-          />
-        ))}
+      <div ref={sectionRef}>
+        <SectionTitle 
+          title="My Projects" 
+          subtitle="Explore my recent work and technical projects"
+        />
+        
+        <div className="flex justify-center flex-wrap gap-3 mb-12">
+          {categories.map((category) => (
+            <Button
+              key={category.value}
+              variant={activeCategory === category.value ? "default" : "outline"}
+              size="sm"
+              className={cn(
+                "transition-all duration-300 rounded-full px-6",
+                activeCategory === category.value
+                  ? "shadow-[0_0_15px_rgba(139,92,246,0.5)] scale-105"
+                  : "hover:text-primary hover:border-primary border-border/50 bg-background/50 backdrop-blur-sm"
+              )}
+              onClick={() => setActiveCategory(category.value)}
+            >
+              {category.label}
+            </Button>
+          ))}
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project) => (
+            <div key={project.id} className="project-card-wrapper h-full">
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                image={project.image}
+                tags={project.tags}
+                demoUrl={project.demoUrl}
+                githubUrl={project.githubUrl}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </Section>
   );

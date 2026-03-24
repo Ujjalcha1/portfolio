@@ -25,44 +25,45 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <div className={cn(
-      "group rounded-lg overflow-hidden bg-card border border-border shadow-sm hover:shadow-md transition-all duration-300",
+      "group rounded-2xl overflow-hidden glass-card border border-white/10 hover-scale flex flex-col h-full",
       className
     )}>
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-56 overflow-hidden">
+        <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500 z-10 mix-blend-overlay"></div>
         <img 
           src={image} 
           alt={title} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
         />
       </div>
       
-      <div className="p-5">
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-2xl font-bold mb-3 tracking-tight">{title}</h3>
         
-        <div className="flex flex-wrap gap-2 mb-3">
+        <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="text-xs">
+            <Badge key={tag} variant="secondary" className="text-xs bg-secondary/50 hover:bg-secondary/80 text-foreground/80 backdrop-blur-md">
               {tag}
             </Badge>
           ))}
         </div>
         
-        <p className="text-muted-foreground mb-4 text-sm">
+        <p className="text-muted-foreground mb-6 text-sm leading-relaxed flex-grow">
           {description}
         </p>
         
-        <div className="flex gap-2 mt-auto">
+        <div className="flex gap-3 mt-auto pt-4 border-t border-border/50">
           {githubUrl && (
-            <Button variant="outline" size="sm" asChild>
+            <Button variant="outline" size="sm" className="bg-transparent border-foreground/20 hover:bg-foreground hover:text-background" asChild>
               <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-                <Github className="mr-1 h-4 w-4" /> Code
+                <Github className="mr-2 h-4 w-4" /> Code
               </a>
             </Button>
           )}
           {demoUrl && (
-            <Button size="sm" asChild>
+            <Button size="sm" className="bg-primary hover:bg-primary/90 text-white shadow-lg opacity-90 hover:opacity-100 transition-opacity" asChild>
               <a href={demoUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="mr-1 h-4 w-4" /> Live Demo
+                <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
               </a>
             </Button>
           )}
