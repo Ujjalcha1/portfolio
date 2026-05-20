@@ -6,6 +6,7 @@ import { Preloader } from "@/components/Preloader";
 import { HeroSection } from "@/sections/HeroSection";
 import { AboutSection } from "@/sections/AboutSection";
 import { ExperienceSection } from "@/sections/ExperienceSection";
+import { ProjectsSection } from "@/sections/ProjectsSection";
 import { ContactSection } from "@/sections/ContactSection";
 import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -42,6 +43,9 @@ const Index = () => {
           </div>
           <div className="w-full">
             <ExperienceSection />
+          </div>
+          <div className="w-full">
+            <ProjectsSection />
           </div>
           <div className="w-full">
             <ContactSection />
